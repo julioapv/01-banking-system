@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { UserIcon, LockClosedIcon } from '@heroicons/react/24/solid'
 
-const Login = () => {
+const Login = ({ isSubmitted, setIsSubmitted }) => {
 
     const fakeDB = [
         {
@@ -16,14 +16,13 @@ const Login = () => {
 
     const errors = {
         uname: "Invalid username :(",
-        pass: "Invalid password >:("
+        pass: "Invalid password :("
     }
 
+    //Constant for erros and attempts
     const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
 
-    //Constant for failed attempts
-    const [FailedAttempts, SetFailedAttempts] = useState(1)
+    const [Attempts, setAttempts] = useState(3)
 
     //Code for handling submit
     const handleSubmit = (event) => {
@@ -39,11 +38,13 @@ const Login = () => {
         if (userData) {
             if(userData.password !== pass.value) {
                 setErrorMessages({name: "pass", message: errors.pass})
+                Attempts > 0 ? setAttempts(Attempts - 1) : setAttempts(0)
             } else {
                 setIsSubmitted(true)
             }
         } else {
             setErrorMessages({name: "uname", message: errors.uname})
+            Attempts > 0 ? setAttempts(Attempts - 1) : setAttempts(0)
         }
     }
 
@@ -74,6 +75,7 @@ const Login = () => {
                     name="uname"
                     required
                     className=""
+                    disabled={Attempts === 0 ? true : false}
                     />
                     {renderErrorMessage("uname")}
                 </div>
@@ -86,17 +88,21 @@ const Login = () => {
                     <input 
                     type="password"
                     name="pass"
-                    required />
+                    required 
+                    disabled={Attempts === 0 ? true : false}
+                    />
                     {renderErrorMessage("pass")}
                 </div>
 
                 <button
                 type="submit"
                 className="border rounded-lg py-2 px-3 bg-blue-500 font-bold"
+                disabled={Attempts === 0 ? true : false}
                 >
                     Log in
                 </button>
-                {FailedAttempts > 1 ? `You have ${FailedAttempts} left` : console.log(FailedAttempts)}
+                {Attempts ? `You have ${Attempts} attempts left` : 'You are blocked, please refresh the webpage'}
+                {console.log(Attempts)}
             </form>
     )
 
