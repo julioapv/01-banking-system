@@ -110,7 +110,7 @@ const Login = ({ isSubmitted, setIsSubmitted }) => {
         <div>
             <div className="bg-blue-200 w-full flex flex-col gap-5 p-2 border rounded-md">
                 {isSubmitted ? null : <p className="text-5xl font-bold text-center">Sign In</p>}
-            {isSubmitted ? null : renderForm}
+                {isSubmitted ? null : renderForm}
             </div>
         </div>
     )

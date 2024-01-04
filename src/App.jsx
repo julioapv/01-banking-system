@@ -7,8 +7,7 @@ function App() {
 
   return (
     <div className="bg-gray-800 w-screen h-screen flex items-center justify-center">
-        <Login isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted}></Login>
-        { isSubmitted ? <DashBoard /> : null}
+        { isSubmitted ? <DashBoard /> : <Login isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted}></Login>}
     </div>
   )
 }
