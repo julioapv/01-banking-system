@@ -3,10 +3,21 @@ import { ArrowDownOnSquareStackIcon, ArrowUpOnSquareIcon, ArrowsUpDownIcon } fro
 
 const DashBoard = () => {
     const [balance, setBalance] = useState(2000);
-    
+    const [inputValue, setInputValue] = useState("")
+    //Deposit function
+
+    const [depositAmout, setDepositAmount] = useState(0)
+
     const depositMoney = () => {
-        console.log('deposit');
+        setDepositAmount(depositAmout + parseFloat(inputValue));
+        setInputValue("")
+        console.log(depositAmout);
     }
+
+    const handleDepositData = (e) => {
+        setInputValue(e.target.value)
+    }
+
     
     const withdrawMoney = () => {
         console.log('withdraw');
@@ -38,11 +49,13 @@ const DashBoard = () => {
                             step={0.1} 
                             min={0} 
                             className="outline-none border focus:border-blue-400"
+                            value={inputValue}
+                            onChange={handleDepositData}
                             />
                         </div>
                         <button 
                         className="text-xl text-white bg-blue-500 border rounded-lg py-2 px-5 active:bg-blue-700"
-                        onClick={() => depositMoney()}
+                        onClick={depositMoney}
                         >
                             Deposit
                         </button>
@@ -63,7 +76,7 @@ const DashBoard = () => {
                         </div>
                         <button 
                         className="text-xl text-white bg-blue-500 border rounded-lg py-2 px-5 active:bg-blue-700"
-                        onClick={() => depositMoney()}
+                        onClick={withdrawMoney}
                         >
                             Deposit
                         </button>
@@ -84,7 +97,7 @@ const DashBoard = () => {
                         </div>
                         <button 
                         className="text-xl text-white bg-blue-500 border rounded-lg py-2 px-5 active:bg-blue-700"
-                        onClick={() => depositMoney()}
+                        onClick={transferMoney}
                         >
                             Deposit
                         </button>
