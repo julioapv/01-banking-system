@@ -6,10 +6,7 @@ import { EyeIcon } from '@heroicons/react/24/solid'
 
 function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-<<<<<<< HEAD
   const [isRevealed, setIsRevealed] = useState(false)
-=======
->>>>>>> 2291414 (fixed login not working)
 
   return (
     <div className="bg-gray-800 w-screen h-screen flex flex-col items-center justify-center gap-5">
